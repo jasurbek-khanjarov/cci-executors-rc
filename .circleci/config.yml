@@ -15,12 +15,14 @@ jobs:
   test_2:
     executor:
       name: test-node-exec
-      resource_class: small
+    resource_class: small
     steps:
       - run: echo "Hello World from job 2"
       
       
 workflows:
-  jobs:
-    test_1
-    test_2
+  version: 2
+  rc-workflow:
+    jobs:
+      - test_1
+      - test_2
