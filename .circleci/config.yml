@@ -1,0 +1,26 @@
+version: 2.1
+
+executors:
+  test-node-exec:
+    docker:
+      - image: cimg/node:18.4.0
+    resource_class: large
+      
+jobs:
+  test_1:
+    executor: test-node-exec
+    steps:
+      - run: echo "Hello World form job 1"
+    
+  test_2:
+    executor:
+      name: test-node-exec
+      resource_class: small
+    steps:
+      - run: echo "Hello World from job 2"
+      
+      
+workflows:
+  jobs:
+    test_1
+    test_2
